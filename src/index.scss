@@ -1,0 +1,775 @@
+$primColor: #252B48;
+$secColor: #445069;
+$thrColor: #5B9A8B;
+$textColor: #F7E987;
+
+html {
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  }
+
+  header {
+    align-items: center;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    flex-grow: inherit;
+    background-color: $primColor;
+    margin: 2rem 2em;
+    width: 95%;
+    border-bottom: 1px solid $textColor;
+    height: 3rem;
+    border-radius: 30px;
+
+    .Nav-Bar 
+    {
+      display: flex;
+      margin-right: 2em;  
+
+      ul 
+      {
+        display: flex;
+        list-style: none;
+
+        li 
+        {
+          text-decoration: none;
+          a 
+          {
+            margin: 25px;
+            text-decoration: none;
+            color: $textColor;
+            font-size: 23px;
+            border-radius: 20px;
+            @media(max-width: 591px)
+            {
+              font-size: 17px;
+              margin: 10px;            
+            }
+          }
+          a:hover
+          {
+            box-shadow: 0px 2px 2px 2px  $textColor;
+          }
+        }
+
+        li.active
+        {
+          a
+          {
+            box-shadow: 0px 2px 2px 2px  $textColor;
+          }
+        }
+      }
+      @media(max-width: 591px)
+      {
+        margin-right: 1em;
+      }
+    }
+
+    @media(max-width: 768px)
+    {
+      width: 90%;
+    }
+    @media(max-width:430px)
+    {
+      margin: 1em 0;
+      width: 100%;
+    }
+  }
+
+  .Content , .About , .Missing 
+  {
+    min-height: 130vh;
+    background-color: $secColor;
+    color: $textColor;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .Reviews 
+  {
+    display: flex;
+    justify-content: center;
+    .Reviews-Component
+    {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 10rem 0 4rem 0;
+      background: rgba(91, 154, 139, 0.518);
+      width: 90%;
+      border-radius: 10px;
+      border: inset rgb(247, 232, 135);
+      box-shadow: 0 0 30px rgba(59, 200, 167, 0.693);
+      
+      .reviewImg
+      {
+        border: 1px solid rgb(247, 232, 135);
+        width: 60%;
+        height: 300px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgb(247, 232, 135);
+        margin: 2rem 0 2rem 0;
+        img 
+        {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 10px;
+        }
+      }
+
+      .reviewDescription
+      {
+          height: auto;
+          width: 90%;
+          color: $textColor;
+          border-bottom: inset rgb(247, 232, 135);
+          h2 
+          {
+            text-decoration: underline;
+            margin: 2rem;
+          }
+          p 
+          {
+             margin: 2rem;
+          }
+      }
+
+      h1 
+      {
+        color: $textColor;
+        margin: 2rem;
+      }
+
+      .Reviews-List
+      {
+        display: flex;
+        justify-content: center;
+        margin: 1rem 0 1rem 0;
+        width: 90%;
+        border: inset rgb(247, 232, 135);
+        border-radius: 10px;
+        box-shadow: 0 0 30px rgba(247, 232, 135, 0.568);
+        color: $textColor;
+
+        .User-Review
+        {
+          display: flex;
+          flex-direction: column;
+          margin: 2rem 0 2rem 0;
+          width: 60%;
+          border-bottom: inset rgb(247, 232, 135);
+
+          .User-Cred
+          {
+            display: flex;
+            align-items: center;
+            margin-left: 1rem;
+
+            .User-Img
+            {
+              border: inset rgb(247, 232, 135);
+              width: 50px;
+              height: 50px;
+              border-radius: 30px;
+
+              img 
+              {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 30px;
+              }
+            }
+
+            .User-Name
+            {
+              margin-left: 1rem;
+            }
+          }
+
+          .Title-Review
+          {
+            margin: 0.5rem 0 0.3rem 3rem;     
+          }
+          .Rating-Review
+          {
+            margin-left:3rem;
+          }
+          .Description-Review
+          {
+            margin-left: auto;
+            width: 90%;
+          }
+          .Date-Review
+          {
+            margin: 0.2rem 0 1rem auto;
+          }
+        }
+      }
+
+      .Review-Btn
+      {
+        display: flex;
+        justify-content: center;
+        margin: 2rem 0 2rem 0;
+        width: 90%;
+        button 
+        {
+           width: 30%;
+           height: 40px;
+           margin: 2rem 0 2rem 0;
+           border: 1px solid rgb(247, 232, 135);
+           border-radius: 20px;
+           background: rgba(91, 154, 139, 0.274);
+           cursor: pointer;
+           color: $textColor;
+           .btn-logo
+           {
+             font-size: 23px;
+           }
+        }
+        button:hover
+        {
+          box-shadow: 0 0 30px rgba(59, 200, 167, 0.693);
+        }
+      }
+    }
+  }
+
+  .Content
+  {
+    display: flex;
+    flex-direction: column;
+    .Search-Bar
+    {
+      cursor: pointer;
+      display: flex;
+      margin: 6rem 0 2rem 0;
+    }
+    .Card-Content
+    {
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       cursor: default;
+       height: 500px;
+       width: 400px;
+       margin: 2rem 2rem;
+       background: rgba(91, 154, 139, 0.518);
+       box-shadow: 2px 3px 30px 20px rgba(91, 154, 139, 0.693);
+       @media(max-width: 594px)
+       {
+          height: 300px;
+          width: 250px;
+       }
+
+       .Image-Container
+       {
+          border: 1px solid rgb(247, 232, 135);
+          width: 300px;
+          height: 200px;
+          margin: 2.5rem 0 1.2rem 0;
+          @media(max-width: 594px)
+          {
+              margin: 1rem 0 1rem 0;
+              height: 130px;
+              width: 180px;
+          }
+          img 
+          {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+          }
+       }
+       .Title-Container
+       {
+          display: flex;
+          justify-content: center;
+          border-bottom: inset rgb(247, 232, 135);
+          width: auto;
+          margin-bottom: 1rem;
+          @media(max-width: 594px)
+          {
+              margin-bottom: 0.6rem;
+          }
+       }
+       .Stars-Container
+       {
+          width: 80%;
+          margin-bottom: 1.3rem;
+          @media(max-width: 594px)
+          {
+              margin-bottom: 0.7rem;
+          }
+       }
+       .Description-Container
+       {
+          width: 90%;
+          height: 90px;
+          margin-bottom: 1rem;
+          @media(max-width: 594px)
+          {
+              margin-bottom: 0.5rem;
+              height: 20px;
+          }
+       }
+       .Link
+       {
+         a 
+         {
+           color: $textColor;
+         }
+       }
+    }
+    .Card-Content:hover 
+    {
+      border: inset rgb(247, 232, 135);
+      box-shadow: 1px 2px 32px 23px rgba(59, 200, 167, 0.693);
+    }
+
+    .Add-Btn
+    {
+      display: flex;
+      justify-content: center;
+      width: 90%;
+      button 
+      {
+         width: 30%;
+         height: 40px;
+         margin: 2rem 0 2rem 0;
+         border: 1px solid rgb(247, 232, 135);
+         border-radius: 20px;
+         background: rgba(91, 154, 139, 0.274);
+         cursor: pointer;
+         color: $textColor;
+         .btn-logo
+         {
+           font-size: 23px;
+         }
+      }
+      button:hover
+      {
+        box-shadow: 0 0 30px rgba(59, 200, 167, 0.693);
+      }
+    }
+
+    .Search-Bar
+    {
+      display: flex;
+      justify-content: center;
+      width: 90%;
+      .SearchBar
+      {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 2px solid rgb(247, 232, 135);
+        width: 60%;
+        border-radius: 10px;
+
+        input 
+        {
+          width: 100%;
+          padding-left: 2rem;
+          margin-left: 1rem;
+          color: $textColor;
+          background: transparent;
+          border: 0;
+          font-size: 15px;
+          outline: none;
+        }
+        input::placeholder
+        {
+          color: $textColor;
+        }
+      }
+    }
+  }
+
+  .About
+  {
+    display: flex;
+    flex-direction: column;
+    padding-top: 5rem;
+    .Container-About
+    {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin: 2rem  2rem;
+      position: relative;
+      background: rgba(91, 154, 139, 0.27);
+      transform: skewX(-25deg);
+      min-height: 5rem;
+      width: 80%;
+      box-shadow: 0 7px 10px rgba(59, 200, 167, 0.693);
+
+      .Container-Title
+      {
+        display: flex;
+        padding: 2rem;
+        text-decoration: underline;
+        transform: skewX(25deg);
+        cursor: default;
+        @media(max-width: 768px)
+        {
+          padding: 1rem;
+          transform: skewX(13deg);
+        }
+      }
+
+      .Container-Content
+      {
+        display: flex;
+        padding: 2rem;
+        font-size: 1em;
+        transform: skewX(25deg);
+        cursor: default;
+        @media(max-width: 768px)
+        {
+          transform: skewX(13deg);
+          padding: 1rem;
+        }
+        @media(max-width: 509px)
+        {
+          font-size: 0.6em;
+        }
+      }
+
+      @media(max-width: 768px)
+      {
+        transform: skewX(-13deg);
+      }
+    }
+    .Container-About:hover
+    {
+      box-shadow: 0 10px 12px rgba(59, 200, 167, 0.693);
+      border: solid rgba(247, 232, 135, 0.568);
+    }
+  }
+
+  .home-content 
+  {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    text-transform: uppercase;
+    height: 100vh;
+    background-image: radial-gradient(rgba(91, 154, 139, 0.693), rgba(0, 0, 3, 0.436)),
+    url(./images/restaurant-background2.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    h1, .hover, .star 
+    {
+      cursor: pointer;
+    }
+
+    h1 
+    {
+      position: relative;
+      color: $textColor;
+      text-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .concept-stars
+    {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+
+      .star
+      {
+        margin-left: 2em;
+      }
+    }
+    @media(max-width:710px)
+    {
+      font-size: 10px;
+    }
+    @media(max-width:425px)
+    {
+      font-size: 7px;
+    }
+  }
+
+  .home-content:hover 
+  {
+      h1
+      { 
+        text-shadow: 0 0 10px $textColor,
+                    0 0 20px $textColor,
+                    0 0 40px $textColor,
+                    0 0 80px $textColor;
+        transition: 2s ease-in;
+      }                
+  }
+
+  .Footer {
+    height: 5rem;
+    background-color: $primColor;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: solid 1px $textColor;
+
+    p {
+      color: $textColor;
+      margin-right: 1.5em;
+      @media(max-width: 591px)
+      {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .Logo {
+    margin-left: 1.5em;
+    font-size: larger;
+    font-weight: bolder;
+    color: $textColor;
+
+    @media(max-width: 591px)
+    {
+      font-size: 17px;
+    }
+  }
+
+  .Reviews
+  {
+     min-height: 100vh;
+     background-color: $secColor;
+  }
+
+  .Profile
+  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+
+    .wrapper
+    {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      width: 350px;
+      height: 440px;
+      background: transparent;
+      border: 2px solid rgb(247, 232, 135);
+      border-radius: 20px;
+      backdrop-filter: blur(20px);  
+      box-shadow: 0 0 30px rgba(247, 232, 135, 0.568);
+      overflow: hidden;
+      transition: transform .3s ease , height .2s ease;
+      color: $textColor;
+
+      a 
+      {
+        text-decoration: none;
+        color: $thrColor;
+      }
+      a:hover 
+      {
+        text-decoration: underline;
+      }
+      
+      .icon-close
+      {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        color: $textColor;
+        font-size: 30px;
+        cursor: pointer;
+        border: 2px solid;
+        border-radius: 30px;
+      }
+
+      .icon-close:hover 
+      {
+        box-shadow: 0 1px 7px $textColor;
+      } 
+
+      h2 
+      {
+        color: $textColor;
+        text-align: center;
+        position: absolute;
+        top: 40px;
+        right: 0;
+        left: 0;
+      }
+      
+      .input-file-box 
+      {
+          cursor: pointer;
+          position: relative;
+          width: 100%;
+          height: 40px;
+          border-bottom: 2px solid $textColor;
+          margin: 30px 0;
+          
+        .File-Input
+        {
+           position: absolute;
+           top: 50%;
+           transform: translateY(-50%);
+           opacity: 0;
+           cursor: pointer;
+           z-index: 3;
+        }  
+
+        label
+        { 
+          position: absolute;
+          cursor: pointer;
+          color: $textColor;
+          top: 50%;
+          left: 30px;
+          transform: translateY(-50%);
+          font-weight: 500;
+        }
+        
+        .icon 
+        {
+          position: absolute;
+          right: 8px;
+          font-size: 1.2em;
+          color: $textColor;
+          line-height: 57px;
+        }
+      }
+
+      .form-box
+      {
+        .photo-box
+        {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          
+          img 
+          {
+            height: 70px;
+            width: 70px;
+            border: inset rgb(247, 232, 135);
+            border-radius: 40px;
+            object-fit: cover;
+          }
+
+          input 
+          {
+            position: absolute;
+            opacity: 0;
+          }
+        }
+
+        .login-register
+        {
+          p 
+          {
+             .update-link
+             {
+               display: flex;
+               justify-content: center;
+               margin-bottom: 1rem;
+               color: $textColor;
+             }
+          }
+        }
+      }
+
+      .form-box .input-box
+      {
+          position: relative;
+          width: 100%;
+          height: 40px;
+          border-bottom: 2px solid $textColor;
+          margin: 30px 0;
+
+        input 
+        {
+          width: 70%;
+          height: 100%;
+          background: transparent;
+          border: none;
+          outline: none;
+          font-size: 1em;
+          color: $textColor;
+          font-weight: 600;
+          padding: 0 35px 0 5px;
+        }
+        input:focus~label,
+        input:valid~label
+        {
+          top: -5px;
+        }
+
+        label
+        {
+          position: absolute;
+          color: $textColor;
+          top: 50%;
+          left: 30px;
+          transform: translateY(-50%);
+          font-weight: 500;
+          pointer-events: none;
+          transition: .5s;
+        }
+
+        .icon 
+        {
+          position: absolute;
+          right: 8px;
+          font-size: 1.2em;
+          color: $textColor;
+          line-height: 57px;
+        }
+
+      }
+
+      .btn-sub
+      {
+        width: 100%;
+        height: 45px;
+        background: $thrColor;
+        border: none;
+        outline: none;
+        border-radius: 6px;
+        cursor: 1em;
+        cursor: pointer;
+        color: $textColor;
+        font-size: 17px;
+      }
+    }
+  }
+
+  
+}
+
