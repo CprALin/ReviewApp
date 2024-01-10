@@ -1,0 +1,6 @@
+@recenziiBack_HostAddress = http://localhost:5258
+
+GET {{recenziiBack_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
