@@ -20,11 +20,11 @@ namespace recenziiBack.Cotrollers
         //POST : api/utilizatori/inregistrare
         [HttpPost]
         [Route("inregistrare")]
-        public JsonResult Inregistrare([FromBody] Utilizatori utilizator)
+        public async Task<JsonResult> Inregistrare([FromBody] Utilizatori utilizator)
         {
             if(ModelState.IsValid)
             {
-                _utilizatoriRepository.InregistreazaUtilizator(utilizator);
+                await _utilizatoriRepository.InregistreazaUtilizator(utilizator);
 
                 return new JsonResult(new {success = true , message = "Utilizator inregistrat cu success . "});
             }

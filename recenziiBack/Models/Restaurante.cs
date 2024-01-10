@@ -6,5 +6,6 @@
         public string? NumeRestaurant { get; set;}
         public string? AdresaRestaurant { get; set;}
         public string? DescriereRestaurant { get; set;}
+        public string? PozaRestaurant { get; set;}
     }
 }

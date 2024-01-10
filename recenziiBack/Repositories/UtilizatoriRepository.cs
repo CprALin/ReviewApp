@@ -13,21 +13,20 @@ namespace recenziiBack.Repositories
             _connection = connection;
         }
 
-        public void InregistreazaUtilizator(Utilizatori utilizator)
+        public async Task InregistreazaUtilizator(Utilizatori utilizator)
         {
             //Nume procedura
-            string storedProcedure = "procedura";
+            string storedProcedure = "RegisterUtilizator";
 
             //Parametri pentru procedura
             var parameters = new
             {
                 EmailUtilizator = utilizator.EmailUtilizator,
-                ParolaUtilizator = utilizator.ParolaUtilizator,
-                RolUtilizator = utilizator.RolUtilizator
+                ParolaUtilizator = utilizator.ParolaUtilizator
             };
 
             //Executa procedura stocata
-            _connection.Execute(storedProcedure, parameters, commandType: CommandType.StoredProcedure);
+            await _connection.ExecuteAsync(storedProcedure, parameters, commandType: CommandType.StoredProcedure);
 
         }
     }
