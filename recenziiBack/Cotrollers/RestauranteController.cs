@@ -24,5 +24,19 @@ namespace recenziiBack.Cotrollers
 
             return new JsonResult(new { success = true , message = "Lista de restaurante" , data = restaurante });
         }
+
+        [HttpGet]
+        [Route("getRestaurant/{id}")]
+        public JsonResult GetRestaurant(int id)
+        {
+            var restaurant = _repository.GetByIdRestaurant(id);
+
+            if(restaurant == null)
+            {
+                return new JsonResult(new { success = false , message = "Restaurant Not Found"});
+            }
+
+            return new JsonResult(new { success = true , message = "Restaurant Found" ,  data = restaurant });
+        }
     }
 }

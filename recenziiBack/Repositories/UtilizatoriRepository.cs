@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using recenziiBack.Models;
 using System.Data;
+using recenziiBack.Services;
 
 namespace recenziiBack.Repositories
 {
@@ -21,8 +22,9 @@ namespace recenziiBack.Repositories
             //Parametri pentru procedura
             var parameters = new
             {
+                NumeUtilizator = utilizator.NumeUtilizator,
                 EmailUtilizator = utilizator.EmailUtilizator,
-                ParolaUtilizator = utilizator.ParolaUtilizator
+                ParolaUtilizator = HashParola.HashPass(utilizator.ParolaUtilizator)
             };
 
             //Executa procedura stocata

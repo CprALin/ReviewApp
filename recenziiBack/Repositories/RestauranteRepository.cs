@@ -17,5 +17,15 @@ namespace recenziiBack.Repositories
         {
             return _connection.Query<Restaurante>("GetAllRestaurante", commandType: CommandType.StoredProcedure);
         }
+
+        public IEnumerable<Restaurante> GetByIdRestaurant(int id)
+        {
+                //Nume procedura
+                string procedura = "GetByIdRestaurant";
+
+                var parameters = new { IdRestaurant = id };
+
+            return _connection.Query<Restaurante>(procedura , parameters , commandType : CommandType.StoredProcedure);
+        }
     }
 }

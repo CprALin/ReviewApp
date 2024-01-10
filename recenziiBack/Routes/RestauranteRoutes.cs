@@ -7,7 +7,13 @@
             endpoints.MapControllerRoute(
                 name: "GetAllRestaurante",
                 pattern: "api/Restaurante/getRestaurante",
-                defaults: new { controller = "Restaurante", action = "getRestaurante" }
+                defaults: new { controller = "Restaurante", action = "GetRestaurante" }
+            );
+
+            endpoints.MapControllerRoute(
+                name : "GetByIdRestaurant",
+                pattern : "api/Restaurante/getRestaurant/{id}",
+                defaults : new { controller = "Restaurante" , action = "GetRestaurant"}
             );
         }
     }
