@@ -39,6 +39,7 @@ namespace recenziiBack
             //Rute
             UtilizatoriRoutes.ConfigureUtilizatoriRoutes(app);
             RestauranteRoutes.ConfigureRestauranteRoutes(app);
+            ProfilUtilizatorRoutes.ConfigureProfilRoutes(app);
 
             app.Run();
         }

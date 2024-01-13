@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Runtime.CompilerServices;
 
 namespace recenziiBack.Models
 {
@@ -9,4 +10,21 @@ namespace recenziiBack.Models
         public string? PozaProfil { get; set; }
         public string? DescriereProfil { get; set; }
     }
+
+    public class GetProfilUtilizator
+    {
+        public string? PozaProfil { get; }
+        public string? DescriereProfil { get; }
+    }
+
+    public class UpdatePozaProfilUtilziator
+    {
+        public string? PozaProfil { get; set;}
+    }
+
+    public class UpdateDescriereProfilUtilziator
+    {
+        public string? DescriereProfil { get; set; }
+    }
+
 }

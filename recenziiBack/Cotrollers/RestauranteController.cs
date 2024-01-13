@@ -34,10 +34,10 @@ namespace recenziiBack.Cotrollers
 
             if(!restaurant.Any())
             {
-                return new JsonResult(new { success = false , message = "Restaurant Not Found"});
+                return new JsonResult(new { success = false , message = "Restaurantul nu a fost gasit !"});
             }
 
-            return new JsonResult(new { success = true , message = "Restaurant Found" ,  data = restaurant });
+            return new JsonResult(new { success = true , message = "Restaurantul a fost gasit" ,  data = restaurant });
         }
 
         [HttpPost]
