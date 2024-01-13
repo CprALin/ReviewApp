@@ -21,11 +21,51 @@ namespace recenziiBack.Repositories
         public IEnumerable<Restaurante> GetByIdRestaurant(int id)
         {
                 //Nume procedura
-                string procedura = "GetByIdRestaurant";
+                string storedProcedure = "GetByIdRestaurant";
 
                 var parameters = new { IdRestaurant = id };
 
-            return _connection.Query<Restaurante>(procedura , parameters , commandType : CommandType.StoredProcedure);
+            return _connection.Query<Restaurante>(storedProcedure , parameters , commandType : CommandType.StoredProcedure);
+        }
+
+        public async Task AddRestaurant(AdaugaRestaurant restaurant)
+        {
+            string storedProcedure = "AddRestaurant";
+
+            var parameters = new
+            {
+                NumeRestaurant = restaurant.NumeRestaurant,
+                AdresaRestaurant = restaurant.AdresaRestaurant,
+                DescriereRestaurant = restaurant.DescriereRestaurant,
+                PozaRestaurant = restaurant.PozaRestaurant
+            };
+
+            await _connection.QueryAsync(storedProcedure , parameters , commandType : CommandType.StoredProcedure);
+        }
+
+        public async Task UpdateRestaurant(AdaugaRestaurant restaurant , int id)
+        {
+            string storedProcedure = "UpdateRestaurant";
+
+            var parameters = new
+            {
+                IdRestaurant = id,
+                NumeRestaurant = restaurant.NumeRestaurant,
+                AdresaRestaurant = restaurant.AdresaRestaurant,
+                DescriereRestaurant = restaurant.DescriereRestaurant,
+                PozaRestaurant = restaurant.PozaRestaurant
+            };
+
+            await _connection.QueryAsync(storedProcedure , parameters , commandType : CommandType.StoredProcedure);
+        }
+
+        public void DeleteRestaurant(int id)
+        {
+            string storedProcedure = "DeleteRestaurant";
+
+            var parameters = new { IdRestaurant = id };
+
+            _connection.Query(storedProcedure , parameters , commandType : CommandType.StoredProcedure);
         }
     }
 }

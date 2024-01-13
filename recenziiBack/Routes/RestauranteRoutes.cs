@@ -1,4 +1,6 @@
-﻿namespace recenziiBack.Routes
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace recenziiBack.Routes
 {
     public static class RestauranteRoutes
     {
@@ -14,6 +16,24 @@
                 name : "GetByIdRestaurant",
                 pattern : "api/Restaurante/getRestaurant/{id}",
                 defaults : new { controller = "Restaurante" , action = "GetRestaurant"}
+            );
+
+            endpoints.MapControllerRoute(
+                name : "AddRestaurant",
+                pattern : "api/Restaurante/addRestaurant",
+                defaults : new { controller = "Restaurante" , action = "AddRestaurant"}
+            );
+
+            endpoints.MapControllerRoute(
+                name : "UpdateRestaurant",
+                pattern : "api/Restaurante/updateRestaurant/{id}",
+                defaults : new { controller = "Restaurante" , action = "UpdateRestaurant" }
+            );
+
+            endpoints.MapControllerRoute(
+                name : "DeleteRestaurant",
+                pattern : "api/Restaurante/deleteRestaurant/{id}",
+                defaults : new { controller = "Restaurante" , action = "DeleteRestaurant"}
             );
         }
     }
