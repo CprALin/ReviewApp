@@ -40,6 +40,11 @@ namespace recenziiBack.Cotrollers
         {
             if(ModelState.IsValid)
             {
+                if(_recenziiRepository.VerificaExistentaRecenzie(idU, idR))
+                {
+                    return new JsonResult(new { success = false, message = "Deja ai adaugat o recenzie la acest restaurant !" });
+                }
+
                 await _recenziiRepository.AddRecenzie(recenzie, idR, idU);
 
                 return new JsonResult(new { success = true, message = "Recenzie adaugata cu success !" });

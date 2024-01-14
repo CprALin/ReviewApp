@@ -63,5 +63,28 @@ namespace recenziiBack.Repositories
         
             _connection.Query(storedProcedure , parameters , commandType : CommandType.StoredProcedure);
         }
+
+        public bool VerificaExistentaRecenzie(int IdUtilizator , int IdRestaurant)
+        {
+            string storedProcedure = "VerificaExistentaRecenzie";
+
+            var parameters = new DynamicParameters();
+            parameters.Add("IdUtilizator", IdUtilizator);
+            parameters.Add("IdRestaurant", IdRestaurant);
+            parameters.Add("Exist", DbType.Int32, direction: ParameterDirection.Output);
+
+            _connection.Query(storedProcedure , parameters, commandType : CommandType.StoredProcedure);
+
+            int Exist = parameters.Get<int>("Exist");
+
+            if(Exist == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
