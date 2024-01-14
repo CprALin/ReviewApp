@@ -40,6 +40,7 @@ namespace recenziiBack
             UtilizatoriRoutes.ConfigureUtilizatoriRoutes(app);
             RestauranteRoutes.ConfigureRestauranteRoutes(app);
             ProfilUtilizatorRoutes.ConfigureProfilRoutes(app);
+            RecenziiRoutes.ConfigureRecenziiRoutes(app);
 
             app.Run();
         }
