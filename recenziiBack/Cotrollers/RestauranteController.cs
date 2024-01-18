@@ -48,7 +48,7 @@ namespace recenziiBack.Cotrollers
 
         [HttpPost]
         [Route("addRestaurant")]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<JsonResult> AddRestaurant([FromBody] AdaugaRestaurant restaurant)
         {
             if(ModelState.IsValid)
@@ -63,7 +63,7 @@ namespace recenziiBack.Cotrollers
 
         [HttpPut]
         [Route("updateRestaurant/{id}")]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<JsonResult> UpdateRestaurant([FromBody] AdaugaRestaurant restaurant , int id)
         {
             if(ModelState.IsValid)
@@ -78,7 +78,7 @@ namespace recenziiBack.Cotrollers
 
         [HttpDelete]
         [Route("deleteRestaurant/{id}")]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public JsonResult DeleteRestaurant(int id)
         {
             if (ModelState.IsValid)

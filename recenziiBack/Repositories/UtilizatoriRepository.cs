@@ -67,5 +67,16 @@ namespace recenziiBack.Repositories
 
             _connection.Query(storedProcedure , parameters , commandType : CommandType.StoredProcedure);
         }
+
+        public async Task<string> GetRolUtilizator(string email)
+        {
+            string storedProcedure = "GetRolUtilizator";
+
+            var parameters = new { EmailUtilizator = email };
+
+            string? rol = await _connection.QueryFirstOrDefaultAsync<string>(storedProcedure , parameters ,  commandType : CommandType.StoredProcedure);
+
+            return rol;
+        }
     }
 }

@@ -23,7 +23,7 @@ namespace recenziiBack.Cotrollers
 
         [HttpGet]
         [Route("getProfilUtilizator/{id}")]
-        [Authorize]
+        [Authorize(Roles = "User,Admin")]
         public JsonResult GetProfilUtilizator(int id)
         {
             var profil = _profilUtilizatorRepository.GetProfilUtilizator(id);
@@ -38,7 +38,7 @@ namespace recenziiBack.Cotrollers
 
         [HttpPut]
         [Route("updatePozaProfil/{id}")]
-        [Authorize]
+        [Authorize(Roles = "User,Admin")]
         public async Task<JsonResult> UpdatePozaProfil([FromBody] UpdatePozaProfilUtilziator profil , int id)
         {
             if(ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace recenziiBack.Cotrollers
 
         [HttpPut]
         [Route("updateDescriereProfil/{id}")]
-        [Authorize]
+        [Authorize(Roles = "User,Admin")]
         public async Task<JsonResult> UpdateDescriereProfil([FromBody] UpdateDescriereProfilUtilziator profil, int id)
         {
             if (ModelState.IsValid)

@@ -28,6 +28,7 @@ namespace recenziiBack.Cotrollers
         [AllowAnonymous]
         public async Task<JsonResult> Inregistrare([FromBody] UtilizatoriInregistrare utilizator)
         {
+
             if(ModelState.IsValid)
             {
                 try { 
@@ -40,9 +41,11 @@ namespace recenziiBack.Cotrollers
                     }
                 }    
 
-                var token = _jwtService.GenerateToken(utilizator.EmailUtilizator);
+                string rol = await _utilizatoriRepository.GetRolUtilizator(utilizator.EmailUtilizator);
 
-                return new JsonResult(new {success = true , message = "Utilizator inregistrat cu success . " , data = token});
+                var token = _jwtService.GenerateToken(utilizator.EmailUtilizator , rol);
+
+                return new JsonResult(new { success = true, message = "Utilizator inregistrat cu success . ", data = token });
             }
 
             return new JsonResult(new { success = false , message = "Fail" , errors = ModelState.Values.SelectMany(v => v.Errors)});
@@ -61,9 +64,11 @@ namespace recenziiBack.Cotrollers
                 
                 if(idProfil != -1)
                 {
-                    var token = _jwtService.GenerateToken(utilizator.EmailUtilizator);
+                    string rol = await _utilizatoriRepository.GetRolUtilizator(utilizator.EmailUtilizator);
 
-                    return new JsonResult(new { success = true, message = "Autentificare reusita !", data = new { IdProfil = idProfil, Token = token } });
+                    var token = _jwtService.GenerateToken(utilizator.EmailUtilizator , rol);
+
+                    return new JsonResult(new { success = true, message = "Autentificare reusita !", data = new { IdProfil = idProfil , Token = token } });
                 }
                 else
                 {
@@ -76,7 +81,7 @@ namespace recenziiBack.Cotrollers
 
         [HttpDelete]
         [Route("deleteUtilizator/{id}")]
-        [Authorize]
+        [Authorize(Roles = "User,Admin")]
         public JsonResult DeleteUtilizator(int id)
         {
             if(ModelState.IsValid)

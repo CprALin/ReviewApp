@@ -18,7 +18,7 @@ namespace recenziiBack.Services
             _configuration = configuration;
         }
 
-        public string GenerateToken(string email)
+        public string GenerateToken(string email , string rol)
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtConfig:key"]));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -26,6 +26,7 @@ namespace recenziiBack.Services
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Email, email),
+                new Claim(ClaimTypes.Role, rol),
             };
 
             var token = new JwtSecurityToken(
