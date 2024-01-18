@@ -46,7 +46,6 @@ namespace recenziiBack.Repositories
 
             await _connection.QueryAsync(storedProcedure , parameters, commandType: CommandType.StoredProcedure);
 
-
             int IdProfil = parameters.Get<int>("IdProfil");
 
             if(IdProfil != -1)

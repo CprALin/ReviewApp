@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using recenziiBack.Infrastructure;
 using recenziiBack.Models;
 using recenziiBack.Repositories;
+using recenziiBack.Services;
 
 namespace recenziiBack.Cotrollers
 {
@@ -11,14 +13,17 @@ namespace recenziiBack.Cotrollers
     public class RestauranteController : ControllerBase
     {
         private readonly RestauranteRepository _restaurantRepository;
+        private readonly JWTservice _jwtService;
 
-        public RestauranteController()
+        public RestauranteController(JWTservice jwtService)
         {
             _restaurantRepository = new RestauranteRepository(new DBconnection().ConnectToDB());
+            _jwtService = jwtService;
         }
 
         [HttpGet]
         [Route("getRestaurante")]
+        [AllowAnonymous]
         public JsonResult GetRestaurante()
         {
             var restaurante = _restaurantRepository.GetAllRestaurante();
@@ -28,6 +33,7 @@ namespace recenziiBack.Cotrollers
 
         [HttpGet]
         [Route("getRestaurant/{id}")]
+        [AllowAnonymous]
         public JsonResult GetRestaurant(int id)
         {
             var restaurant = _restaurantRepository.GetByIdRestaurant(id);
@@ -42,6 +48,7 @@ namespace recenziiBack.Cotrollers
 
         [HttpPost]
         [Route("addRestaurant")]
+        [Authorize]
         public async Task<JsonResult> AddRestaurant([FromBody] AdaugaRestaurant restaurant)
         {
             if(ModelState.IsValid)
@@ -56,6 +63,7 @@ namespace recenziiBack.Cotrollers
 
         [HttpPut]
         [Route("updateRestaurant/{id}")]
+        [Authorize]
         public async Task<JsonResult> UpdateRestaurant([FromBody] AdaugaRestaurant restaurant , int id)
         {
             if(ModelState.IsValid)
@@ -70,6 +78,7 @@ namespace recenziiBack.Cotrollers
 
         [HttpDelete]
         [Route("deleteRestaurant/{id}")]
+        [Authorize]
         public JsonResult DeleteRestaurant(int id)
         {
             if (ModelState.IsValid)

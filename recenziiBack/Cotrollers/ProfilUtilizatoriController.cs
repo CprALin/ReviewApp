@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using recenziiBack.Infrastructure;
 using recenziiBack.Models;
 using recenziiBack.Repositories;
+using recenziiBack.Services;
 
 namespace recenziiBack.Cotrollers
 {
@@ -11,14 +13,17 @@ namespace recenziiBack.Cotrollers
     public class ProfilUtilizatoriController : ControllerBase
     {
         private readonly ProfilUtilizatorRepository _profilUtilizatorRepository;
+        private readonly JWTservice _JWTservice;
 
-        public ProfilUtilizatoriController()
+        public ProfilUtilizatoriController(JWTservice jWTservice)
         {
             _profilUtilizatorRepository = new ProfilUtilizatorRepository(new DBconnection().ConnectToDB());
+            _JWTservice = jWTservice;
         }
 
         [HttpGet]
         [Route("getProfilUtilizator/{id}")]
+        [Authorize]
         public JsonResult GetProfilUtilizator(int id)
         {
             var profil = _profilUtilizatorRepository.GetProfilUtilizator(id);
@@ -33,6 +38,7 @@ namespace recenziiBack.Cotrollers
 
         [HttpPut]
         [Route("updatePozaProfil/{id}")]
+        [Authorize]
         public async Task<JsonResult> UpdatePozaProfil([FromBody] UpdatePozaProfilUtilziator profil , int id)
         {
             if(ModelState.IsValid)
@@ -48,6 +54,7 @@ namespace recenziiBack.Cotrollers
 
         [HttpPut]
         [Route("updateDescriereProfil/{id}")]
+        [Authorize]
         public async Task<JsonResult> UpdateDescriereProfil([FromBody] UpdateDescriereProfilUtilziator profil, int id)
         {
             if (ModelState.IsValid)

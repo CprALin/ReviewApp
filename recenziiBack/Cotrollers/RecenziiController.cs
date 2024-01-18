@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using recenziiBack.Infrastructure;
 using recenziiBack.Models;
 using recenziiBack.Repositories;
+using recenziiBack.Services;
 using System.Data;
 using System.Data.Common;
 using System.Text.Json.Nodes;
@@ -14,14 +16,17 @@ namespace recenziiBack.Cotrollers
     public class RecenziiController : ControllerBase
     {
         private readonly RecenziiRepository _recenziiRepository;
+        private readonly JWTservice _JWTservice;
 
-        public RecenziiController()
+        public RecenziiController(JWTservice jWTservice)
         {
             _recenziiRepository = new RecenziiRepository(new DBconnection().ConnectToDB());
+            _JWTservice = jWTservice;
         }
 
         [HttpGet]
         [Route("getRecenziiRestaurant/{id}")]
+        [AllowAnonymous]
         public JsonResult GetRecenzii(int id)
         {
             var recenzie = _recenziiRepository.GetRecenziiRestaurant(id);
@@ -36,6 +41,7 @@ namespace recenziiBack.Cotrollers
 
         [HttpPost]
         [Route("addRecenzie/RestaurantId={idR}/UtilizatorId={idU}")]
+        [Authorize]
         public async Task<JsonResult> AddRecenzie([FromBody] AddRecenzieRestaurant recenzie, int idR, int idU)
         {
             if(ModelState.IsValid)
@@ -55,6 +61,7 @@ namespace recenziiBack.Cotrollers
 
         [HttpPut]
         [Route("updateRecenzie/{id}")]
+        [Authorize]
         public async Task<JsonResult> UpdateRecenzie([FromBody] AddRecenzieRestaurant recenzie , int id)
         {
             if(ModelState.IsValid)
@@ -69,6 +76,7 @@ namespace recenziiBack.Cotrollers
 
         [HttpDelete]
         [Route("deleteRecenzie/{id}")]
+        [Authorize]
         public JsonResult DeleteRecenzie(int id)
         {
             if(ModelState.IsValid)
